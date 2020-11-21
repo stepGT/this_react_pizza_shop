@@ -1,14 +1,14 @@
 import React from 'react'
 
-function PizzaBlock({ obj }) {
+function PizzaBlock({ imageUrl, name, price }) {
     return (
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src={obj.imageUrl}
+                src={imageUrl}
                 alt="Pizza"
             />
-            <h4 className="pizza-block__title">{obj.name}</h4>
+            <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
                     <li className="active">тонкое</li>
@@ -21,7 +21,7 @@ function PizzaBlock({ obj }) {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {obj.price} ₽</div>
+                <div className="pizza-block__price">от {price} ₽</div>
                 <div className="button button--outline button--add">
                     <svg
                         width="12"
