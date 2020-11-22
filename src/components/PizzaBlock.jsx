@@ -1,11 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 
-function PizzaBlock({ imageUrl, name, price, types }) {
-    const typenames = ['тонкое', 'традиционное'];
+function PizzaBlock({ imageUrl, name, price, types, sizes }) {
+    const availableTypes = ['тонкое', 'традиционное'];
+    const availableSizes = [26, 30, 40];
+    //
     const [activeType, setActiveType] = React.useState(types[0]);
-    const onSelectItem = (index) => {
+    const [activeSize, setActiveSize] = React.useState(sizes[0]);
+    //
+    const onSelectType = (index) => {
         setActiveType(index);
+    };
+    const onSelectSize = (size) => {
+        setActiveSize(size);
     };
     return (
         <div className="pizza-block">
@@ -17,9 +24,9 @@ function PizzaBlock({ imageUrl, name, price, types }) {
             <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    {typenames.map((type, index) => (
+                    {availableTypes.map((type, index) => (
                         <li
-                            onClick={() => { onSelectItem(index) }}
+                            onClick={() => { onSelectType(index) }}
                             key={index}
                             className={classNames({
                                 'active': activeType === index,
@@ -30,9 +37,17 @@ function PizzaBlock({ imageUrl, name, price, types }) {
                     ))}
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {availableSizes.map((size, index) => (
+                        <li
+                            onClick={() => { onSelectSize(size) }}
+                            key={index}
+                            className={classNames({
+                                'active': activeSize === size,
+                                'disabled': !sizes.includes(size)
+                            })}>
+                            {size} см.
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
