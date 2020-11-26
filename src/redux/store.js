@@ -1,16 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-function counterReducer(state = { value: 0 }, action) {
-    switch (action.type) {
-        case 'counter/incremented':
-            return { value: state.value + 1 }
-        case 'counter/decremented':
-            return { value: state.value - 1 }
-        default:
-            return state;
-    }
-}
+import rootReducer from './reducers';
 
-let store = createStore(counterReducer);
+let store = createStore(rootReducer);
+
+window.store = store;
 
 export default store;
