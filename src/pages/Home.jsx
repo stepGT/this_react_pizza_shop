@@ -23,11 +23,15 @@ function Home() {
     const dispatch = useDispatch();
     const items = useSelector(({ pizzas }) => pizzas.items);
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+    const {category, sortBy} = useSelector(({ filters }) => filters);
+
     React.useEffect(() => {
       dispatch(fetchPizzas());
-    }, []);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [category]);
     const onSelectCategory = React.useCallback(index => {
       dispatch(setCategory(index));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <div className="container">
@@ -41,7 +45,7 @@ function Home() {
           <div className="content__items">
           {isLoaded
           ? items.map((obj) => <PizzaBlock isLoading={true} key={obj.id} {...obj} />)
-          : Array(10).fill(<LoadingBlock />)}
+          : Array(12).fill(0).map((_, index) => <LoadingBlock key={index} />)}
           </div>
         </div>
     )
