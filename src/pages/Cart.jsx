@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function Cart() {
     const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
     const pizzas = Object.keys(items).map(key => {
-        return items[key][0];
+        return items[key].items[0];
     });
     return (
         <div className="content">
@@ -38,7 +38,7 @@ function Cart() {
                                     name={obj.name}
                                     type={obj.type}
                                     size={obj.size}
-                                    price={obj.price} />
+                                    totalPrice={items[obj.id].totalPrice} />
                             })
                         }
                     </div>
