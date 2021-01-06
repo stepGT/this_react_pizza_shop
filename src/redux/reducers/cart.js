@@ -29,6 +29,12 @@ const cart = (state = initialState, action) => {
                 totalCount: allPizzas.length,
                 totalPrice
             }
+        case 'CLEAR_PIZZA_CART':
+            return {
+                items: {},
+                totalPrice: 0,
+                totalCount: 0
+            }
         default: return state;
     }
 }
