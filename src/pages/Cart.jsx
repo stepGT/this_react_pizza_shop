@@ -1,7 +1,7 @@
 import React from 'react';
 import { CartItem } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearPizzaCart, removeCartItem } from '../redux/actions/cart';
+import { clearPizzaCart, removeCartItem, plusCartItem, minusCartItem } from '../redux/actions/cart';
 import EmptyCartPNG from '../assets/img/empty-cart.png';
 import { Link } from 'react-router-dom';
 
@@ -20,6 +20,12 @@ function Cart() {
         if (window.confirm('Clear item?')) {
             dispatch(removeCartItem(id));
         }
+    }
+    const onPlusItem = (id) => {
+        dispatch(plusCartItem(id));
+    }
+    const onMinusItem = (id) => {
+        dispatch(minusCartItem(id));
     }
     return (
         <div className="content">
@@ -56,7 +62,9 @@ function Cart() {
                                         size={obj.size}
                                         totalPrice={items[obj.id].totalPrice}
                                         totalCount={items[obj.id].items.length}
-                                        onRemove={onRemoveItem} />
+                                        onRemove={onRemoveItem}
+                                        onPlus={onPlusItem}
+                                        onMinus={onMinusItem} />
                                 })
                             }
                         </div>
@@ -71,7 +79,9 @@ function Cart() {
                                         <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
 
-                                    <span>Вернуться назад</span>
+                                    <Link to="/">
+                                        <span>Вернуться назад</span>
+                                    </Link>
                                 </a>
                                 <div className="button pay-btn">
                                     <span>Оплатить сейчас</span>

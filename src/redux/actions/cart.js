@@ -11,3 +11,13 @@ export const removeCartItem = (pizzaId) => ({
     type: 'REMOVE_CART_ITEM',
     payload: pizzaId
 });
+
+export const plusCartItem = (pizzaId) => ({
+    type: 'PLUS_CART_ITEM',
+    payload: pizzaId
+});
+
+export const minusCartItem = (pizzaId) => ({
+    type: 'MINUS_CART_ITEM',
+    payload: pizzaId
+});
